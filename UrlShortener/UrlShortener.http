@@ -1,0 +1,53 @@
+@host = https://localhost:7001
+
+### Create a short URL (generated code)
+# @name create
+POST {{host}}/api/urls
+Content-Type: application/json
+
+{
+  "longUrl": "https://learn.microsoft.com/dotnet/",
+  "customAlias": null,
+  "expiresInDays": 30
+}
+
+### Create a short URL with a custom alias
+POST {{host}}/api/urls
+Content-Type: application/json
+
+{
+  "longUrl": "https://github.com/dotnet/aspnetcore",
+  "customAlias": "aspnet"
+}
+
+### Follow the redirect — reuses the code from the "create" request above.
+### (Send the create request first, then this one.)
+GET {{host}}/{{create.response.body.$.code}}
+
+### Get analytics — also reuses the code from "create".
+GET {{host}}/api/urls/{{create.response.body.$.code}}/stats
+
+### Redirect using the custom alias instead
+GET {{host}}/aspnet
+
+### Health check
+GET {{host}}/health
+
+### OpenAPI document
+GET {{host}}/openapi/v1.json
+
+### Rejected: non-http scheme (expect 400)
+POST {{host}}/api/urls
+Content-Type: application/json
+
+{
+  "longUrl": "javascript:alert(1)"
+}
+
+### Rejected: internal host (expect 400)
+POST {{host}}/api/urls
+Content-Type: application/json
+
+{
+  "longUrl": "http://localhost:8080/admin"
+}

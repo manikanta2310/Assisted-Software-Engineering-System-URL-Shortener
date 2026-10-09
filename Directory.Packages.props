@@ -1,0 +1,43 @@
+<Project>
+
+  <!--
+    Central Package Management: every package version lives here in one place.
+    Individual .csproj files reference packages WITHOUT a Version attribute.
+    This keeps versions consistent across all projects and easy to audit.
+
+    Versions are pinned to the current stable releases on NuGet. If your feed
+    offers a newer patch, update the number here (one place) — the code does not
+    depend on any specific patch.
+  -->
+  <PropertyGroup>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Data access (Infrastructure) -->
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.Sqlite" Version="10.0.12" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.12" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.InMemory" Version="10.0.12" />
+
+    <!-- API -->
+    <PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="10.0.12" />
+    <!-- Swagger UI only (renders the built-in OpenAPI doc; no Swashbuckle generator). -->
+    <PackageVersion Include="Swashbuckle.AspNetCore.SwaggerUI" Version="7.2.0" />
+
+    <!-- Validation (Application) -->
+    <PackageVersion Include="FluentValidation" Version="12.1.1" />
+    <PackageVersion Include="FluentValidation.DependencyInjectionExtensions" Version="12.1.1" />
+
+    <!-- Structured logging (API) -->
+    <PackageVersion Include="Serilog.AspNetCore" Version="10.0.0" />
+
+    <!-- Testing -->
+    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.12.0" />
+    <PackageVersion Include="xunit" Version="2.9.2" />
+    <PackageVersion Include="xunit.runner.visualstudio" Version="3.0.0" />
+    <PackageVersion Include="Shouldly" Version="4.2.1" />
+    <PackageVersion Include="Microsoft.AspNetCore.Mvc.Testing" Version="10.0.12" />
+    <PackageVersion Include="coverlet.collector" Version="6.0.2" />
+  </ItemGroup>
+
+</Project>

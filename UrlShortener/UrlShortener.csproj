@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <!--
+    Single application project. Clean Architecture is expressed through folders
+    and namespaces (Domain / Application / Infrastructure / Api), all compiled
+    into one assembly. See docs/decisions.md ADR-009 for the trade-off this makes
+    versus separate projects.
+  -->
+
+  <ItemGroup>
+    <!-- Validation -->
+    <PackageReference Include="FluentValidation" />
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" />
+
+    <!-- Data access -->
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" />
+    <!-- Note: Microsoft.Extensions.Caching.Memory (IMemoryCache) is provided by
+         the ASP.NET Core shared framework, so it is NOT referenced here. -->
+
+    <!-- API + logging -->
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" />
+    <PackageReference Include="Serilog.AspNetCore" />
+
+    <!-- Design-time only: enables `dotnet ef` if you move off EnsureCreated. -->
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+</Project>

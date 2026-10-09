@@ -1,0 +1,31 @@
+<Project>
+
+  <!--
+    Solution-wide build settings, applied to every project automatically.
+
+    Static analysis uses the BUILT-IN .NET analyzers only (no external analyzer
+    package, so no separate build-host tooling). Gate strategy:
+      * Default build  (`dotnet build`)            → compiles cleanly; nullable
+        violations are errors; analyzer findings surface as warnings.
+      * Strict gate    (`dotnet build -warnaserror`) → every warning, including
+        all built-in analyzer findings, becomes an error. This is what CI runs.
+  -->
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningsAsErrors>nullable</WarningsAsErrors>
+
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+    <AnalysisLevel>latest</AnalysisLevel>
+    <AnalysisMode>Recommended</AnalysisMode>
+
+    <Deterministic>true</Deterministic>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+  </PropertyGroup>
+
+</Project>

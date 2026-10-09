@@ -1,0 +1,34 @@
+# Build output
+bin/
+obj/
+[Dd]ebug/
+[Rr]elease/
+artifacts/
+
+# SQLite database files (runtime data — never commit)
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+
+# Secrets / local config (never commit)
+appsettings.*.local.json
+*.user
+secrets.json
+.env
+
+# IDE
+.vs/
+.vscode/
+.idea/
+*.suo
+
+# Test / coverage
+TestResults/
+coverage/
+*.coverage
+*.trx
+
+# OS
+.DS_Store
+Thumbs.db
